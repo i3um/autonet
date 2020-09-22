@@ -2,9 +2,9 @@
 import sensor, image, time
 thresholds_index = 0
 
-thresholds = [(30, 100, 15, 127, 15, 127), 
-              (30, 100, -64, -8, -32, 32), 
-              (0, 30, 0, 64, -128, 0)]
+thresholds = [(30, 100, 15, 127, 15, 127),  #red 
+              (30, 100, -64, -8, -32, 32), #green
+              (0, 30, 0, 64, -128, 0)] #blue
               
 sensor.reset()
 sensor.set_pixformat(sensor.RGB565)
