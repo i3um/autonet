@@ -24,3 +24,4 @@ while(True):
         img.draw_rectangle(blob.rect())
         img.draw_cross(blob.cx(), blob.cy())
     print(clock.fps())
+#https://docs.openmv.io/library/omv.image.html#image.image.blob
