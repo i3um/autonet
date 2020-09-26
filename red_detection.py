@@ -25,3 +25,31 @@ while(True):
         img.draw_cross(blob.cx(), blob.cy())
     print(clock.fps())
 #https://docs.openmv.io/library/omv.image.html#image.image.blob
+################################################################################
+import sensor, image, time
+thresholds_index = 0
+
+thresholds = [(30, 100, 15, 127, 15, 127)]  #red 
+red = threshold()
+
+              
+sensor.reset()
+sensor.set_pixformat(sensor.RGB565)
+sensor.set_framesize(sensor.QVGA)
+sensor.skip_frames(30)
+sensor.set_auto_gain(False) 
+sensor.set_auto_whitebal(False)
+clock = time.clock()
+
+
+
+
+while(True):
+    clock.tick()    
+    img = sensor.snapshot()
+    for blob in img.find_blobs([thresholds[thresholds_index]], pixels_threshold=200, area_threshold=200, merge=True,):
+        if img = red:
+            img.draw_circle(blob.rect())
+        img.draw_cross(blob.cx(), blob.cy())
+    print(clock.fps())  
+ 
