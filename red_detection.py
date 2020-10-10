@@ -109,3 +109,28 @@ while(True):
            # img.draw_edges(blob.min_corners(), color=(255,0,0))
            # img.draw_circle((img.width()//2), (img.height()//2), 20, color = (0, 0, 255), thickness = 2, fill = False)
 
+#############################################################
+import sensor
+import image
+import lcd
+import time
+lcd.init()
+sensor.reset()
+sensor.set_pixformat(sensor.RGB565)
+sensor.set_framesize(sensor.QVGA)
+sensor.run(1)
+red   = (30, 100, 15, 127, 15, 127)
+roi = [0, 0, 0, 0]
+while True:
+    img=sensor.snapshot()
+    blobs = img.find_blobs([red])
+    if blobs:    
+        for b in blobs:
+            img.draw_circle(x, y, radius[, color[, thickness=1[, fill=False]]])
+            roi[0] = c.x() + c.r() 
+                    roi[1] = c.y() + c.r() 
+                    roi[2] = c.r() * 2
+                    roi[3] = c.r() * 2
+            tmp=img.draw_rectangle(b[0:4]) 
+            c=img.get_pixel(b[5], b[6])
+    lcd.display(img)
