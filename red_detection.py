@@ -134,3 +134,28 @@ while True:
             tmp=img.draw_rectangle(b[0:4]) 
             c=img.get_pixel(b[5], b[6])
     lcd.display(img)
+#################################################
+import sensor
+import image
+import lcd
+import time
+roi = [0, 0, 0, 0]
+lcd.init()
+sensor.reset()
+sensor.set_pixformat(sensor.RGB565)
+sensor.set_framesize(sensor.QQVGA)
+sensor.run(1)
+red  = [(30, 100, 15, 127, 15, 127)]
+while True:
+    img = sensor.snapshot()
+    for blob in img.find_blobs(red, pixels_threshold=200, area_threshold=200):
+        a = 0
+        for c in img.find_circles(threshold = 4000, x_margin = 10, y_margin = 10, r_margin = 10, r_min = 2, r_max = 100, r_step = 2):
+              img.draw_circle(c.x(), c.y(), c.r(), color = (0, 0, 255))
+              roi[0] = c.x() + c.r() 
+              roi[1] = c.y() + c.r() 
+              roi[2] = c.r() * 2
+              roi[3] = c.r() * 2
+              print(c) 
+        lcd.display(img)
+          
